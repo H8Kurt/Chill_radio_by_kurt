@@ -1,0 +1,272 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Стили для кассеты */
+.player-cassette {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #2c3e50, #1a252c);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.player-cassette::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(44, 62, 80, 0.5), rgba(26, 37, 44, 0.5));
+  border-radius: 15px;
+  z-index: -1;
+}
+
+.player-cassette .cassette-tape {
+  width: 100%;
+  height: 50px;
+  background: #34495e;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.player-cassette .cassette-tape::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background: #2c3e50;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.player-cassette .cassette-tape::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: #1a252c;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.player-cassette .cassette-label {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  background: transparent;
+  border-radius: 2px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+}
+
+.player-cassette .cassette-label span {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.player-cassette .cassette-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.player-cassette .cassette-controls button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.player-cassette .cassette-controls button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.player-cassette .cassette-controls button:active {
+  transform: scale(0.95);
+}
+
+.player-cassette .cassette-volume {
+  width: 100%;
+  max-width: 200px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+.player-cassette .cassette-volume input[type="range"] {
+  width: 100%;
+  height: 100%;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.player-cassette .cassette-volume input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3498db;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.player-cassette .cassette-volume input[type="range"]::-webkit-slider-thumb:hover {
+  background: #2980b9;
+}
+
+.player-cassette .cassette-volume input[type="range"]::-webkit-slider-thumb:active {
+  background: #1f618d;
+}
+
+.player-cassette .cassette-volume input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(to right, #3498db, #2980b9);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Анимация для визуализатора */
+.visualizer-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 100px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.visualizer-bars div {
+  width: 8px;
+  background: linear-gradient(to top, #3498db, #2980b9);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.1s ease;
+}
+
+/* Стили для эквалайзера */
+.equalizer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+.equalizer .band {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.equalizer .band label {
+  font-size: 12px;
+  color: white;
+}
+
+.equalizer .band input[type="range"] {
+  writing-mode: bt-lr;
+  appearance: none;
+  width: 8px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.equalizer .band input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3498db;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.equalizer .band input[type="range"]::-webkit-slider-thumb:hover {
+  background: #2980b9;
+}
+
+.equalizer .band input[type="range"]::-webkit-slider-thumb:active {
+  background: #1f618d;
+}
+
+.equalizer .band input[type="range"]::-webkit-slider-runnable-track {
+  width: 8px;
+  height: 100px;
+  background: linear-gradient(to top, #3498db, #2980b9);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.equalizer .band .value {
+  font-size: 12px;
+  color: white;
+}
